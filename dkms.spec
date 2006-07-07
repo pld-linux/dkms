@@ -49,6 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS sample.spec
+%dir %{_sysconfdir}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/framework.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/template-dkms-mkrpm.spec
 %attr(754,root,root) /etc/rc.d/init.d/dkms_autoinstaller
