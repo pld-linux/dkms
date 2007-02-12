@@ -1,5 +1,5 @@
 Summary:	Dynamic Kernel Module Support
-Summary(pl):	Obs³uga dynamicznych modu³ów j±dra
+Summary(pl.UTF-8):   ObsÅ‚uga dynamicznych moduÅ‚Ã³w jÄ…dra
 Name:		dkms
 Version:	2.0.11
 Release:	0.1
@@ -21,13 +21,13 @@ will allow Linux vendors to provide driver drops without having to
 wait for new kernel releases while also taking out the guesswork for
 customers attempting to recompile modules for new kernels.
 
-%description -l pl
-DKMS (Dynamic Kernel Module Support) to obs³uga dynamicznych modu³ów
-j±dra. Zosta³a zaprojektowana aby stworzyæ szkielet do przechowywania
-¼róde³ modu³ów zale¿nych od j±dra w sposób ³atwy do zbudowania modu³ów
-po uaktualnieniu j±dra. Pozwala to dostawcom Linuksa udostêpniaæ
-sterowniki bez czekania na nowe wydania j±dra ani rozwi±zywania
-problemów klientów próbuj±cych przebudowaæ modu³y dla nowych j±der.
+%description -l pl.UTF-8
+DKMS (Dynamic Kernel Module Support) to obsÅ‚uga dynamicznych moduÅ‚Ã³w
+jÄ…dra. ZostaÅ‚a zaprojektowana aby stworzyÄ‡ szkielet do przechowywania
+ÅºrÃ³deÅ‚ moduÅ‚Ã³w zaleÅ¼nych od jÄ…dra w sposÃ³b Å‚atwy do zbudowania moduÅ‚Ã³w
+po uaktualnieniu jÄ…dra. Pozwala to dostawcom Linuksa udostÄ™pniaÄ‡
+sterowniki bez czekania na nowe wydania jÄ…dra ani rozwiÄ…zywania
+problemÃ³w klientÃ³w prÃ³bujÄ…cych przebudowaÄ‡ moduÅ‚y dla nowych jÄ…der.
 
 %prep
 %setup -q
