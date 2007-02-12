@@ -1,5 +1,5 @@
 Summary:	Dynamic Kernel Module Support
-Summary(pl.UTF-8):   Obsługa dynamicznych modułów jądra
+Summary(pl.UTF-8):	Obsługa dynamicznych modułów jądra
 Name:		dkms
 Version:	2.0.11
 Release:	0.1
