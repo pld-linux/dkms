@@ -1,12 +1,12 @@
 Summary:	Dynamic Kernel Module Support
 Summary(pl.UTF-8):	Obsługa dynamicznych modułów jądra
 Name:		dkms
-Version:	2.0.11
+Version:	2.0.17.5
 Release:	0.1
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://linux.dell.com/dkms/%{name}-%{version}.tar.gz
-# Source0-md5:	6eff10dd54fe1a5fde4f3abafb50606b
+# Source0-md5:	d0c40299aa09d7b7d355a53cd7f04b64
 URL:		http://linux.dell.com/projects.shtml#dkms
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
