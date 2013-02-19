@@ -43,20 +43,15 @@ problemów klientów próbujących przebudować moduły dla nowych jąder.
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install-redhat \
-	SBIN=$RPM_BUILD_ROOT%{_sbindir} \
-	VAR=$RPM_BUILD_ROOT%{_localstatedir}/lib/%{name} \
-	MAN=$RPM_BUILD_ROOT%{_mandir}/man8 \
-	ETC=$RPM_BUILD_ROOT%{_sysconfdir}/%{name} \
-	BASHDIR=$RPM_BUILD_ROOT/etc/bash_completion.d \
-	LIBDIR=$RPM_BUILD_ROOT%{_prefix}/lib/%{name} \
-	DESTDIR=$RPM_BUILD_ROOT \
+	SHELL=/bin/sh \
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS sample.spec
+%doc AUTHORS README.dkms TODO sample.spec
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/framework.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/template-dkms-mkrpm.spec
