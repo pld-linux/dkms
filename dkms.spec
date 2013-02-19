@@ -1,17 +1,25 @@
-Summary:	Dynamic Kernel Module Support
+Summary:	Dynamic Kernel Module Support Framework
 Summary(pl.UTF-8):	Obsługa dynamicznych modułów jądra
 Name:		dkms
-Version:	2.1.1.2
+Version:	2.2.0.3
 Release:	0.1
 License:	GPL
 Group:		Base/Kernel
 Source0:	http://linux.dell.com/dkms/permalink/%{name}-%{version}.tar.gz
-# Source0-md5:	f8e5f1a2ac065b75c10b1fdaa2ef342f
+# Source0-md5:	11a8aaade2ebec2803653837c7593030
 URL:		http://linux.dell.com/dkms/
+Requires:	bash >= 3.0
+Requires:	coreutils
+Requires:	cpio
+Requires:	findutils
+Requires:	gawk
+Requires:	grep
+Requires:	gzip
+Requires:	kernel-module-build
+Requires:	kmod
+Requires:	sed
+Requires:	tar
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_localstatedir	/var/lib/%{name}
-%define		_sysconfdir	/etc/%{name}
 
 %description
 DKMS stands for Dynamic Kernel Module Support. It is designed to
@@ -34,14 +42,14 @@ problemów klientów próbujących przebudować moduły dla nowych jąder.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_sysconfdir},%{_mandir}/man8,%{_localstatedir},/etc/rc.d/init.d}
-install dkms $RPM_BUILD_ROOT%{_sbindir}
-install dkms.8 $RPM_BUILD_ROOT%{_mandir}/man8
-install dkms_dbversion $RPM_BUILD_ROOT%{_localstatedir}
-install dkms_autoinstaller $RPM_BUILD_ROOT/etc/rc.d/init.d
-install dkms_mkkerneldoth $RPM_BUILD_ROOT%{_sbindir}
-install dkms_framework.conf $RPM_BUILD_ROOT%{_sysconfdir}/framework.conf
-install template-dkms-mkrpm.spec $RPM_BUILD_ROOT%{_sysconfdir}
+%{__make} install-redhat \
+	SBIN=$RPM_BUILD_ROOT%{_sbindir} \
+	VAR=$RPM_BUILD_ROOT%{_localstatedir}/lib/%{name} \
+	MAN=$RPM_BUILD_ROOT%{_mandir}/man8 \
+	ETC=$RPM_BUILD_ROOT%{_sysconfdir}/%{name} \
+	BASHDIR=$RPM_BUILD_ROOT/etc/bash_completion.d \
+	LIBDIR=$RPM_BUILD_ROOT%{_prefix}/lib/%{name} \
+	DESTDIR=$RPM_BUILD_ROOT \
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -49,11 +57,17 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS sample.spec
-%dir %{_sysconfdir}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/framework.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/template-dkms-mkrpm.spec
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/framework.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/template-dkms-mkrpm.spec
 %attr(754,root,root) /etc/rc.d/init.d/dkms_autoinstaller
 %attr(755,root,root) %{_sbindir}/dkms
-%attr(755,root,root) %{_sbindir}/dkms_mkkerneldoth
-%{_mandir}/man?/*
-%{_localstatedir}
+%{_mandir}/man8/dkms.8*
+%dir %{_prefix}/lib/%{name}
+%{_prefix}/lib/%{name}/common.postinst
+%{_prefix}/lib/%{name}/dkms_autoinstaller
+%{_prefix}/lib/%{name}/find-provides
+%{_prefix}/lib/%{name}/lsb_release
+%{_prefix}/lib/%{name}/mkkerneldoth
+%dir %{_localstatedir}/lib/%{name}
+%{_localstatedir}/lib/%{name}/dkms_dbversion
