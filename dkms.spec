@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Obsługa dynamicznych modułów jądra
 Name:		dkms
 Version:	2.2.0.3
 Release:	1
-License:	GPL
+License:	GPL v2+
 Group:		Base/Kernel
 Source0:	http://linux.dell.com/dkms/permalink/%{name}-%{version}.tar.gz
 # Source0-md5:	11a8aaade2ebec2803653837c7593030
@@ -38,6 +38,19 @@ po uaktualnieniu jądra. Pozwala to dostawcom Linuksa udostępniać
 sterowniki bez czekania na nowe wydania jądra ani rozwiązywania
 problemów klientów próbujących przebudować moduły dla nowych jąder.
 
+%package -n bash-completion-dkms
+Summary:	Bash completion for dkms command
+Summary(pl.UTF-8):	Bashowe uzupełnianie parametrów dla polecenia dkms
+Group:		Applications/Shells
+Requires:	%{name} = %{version}-%{release}
+Requires:	bash-completion
+
+%description -n bash-completion-dkms
+Bash completion for dkms command.
+
+%description -n bash-completion-dkms -l pl.UTF-8
+Bashowe uzupełnianie parametrów dla polecenia dkms.
+
 %prep
 %setup -q
 
@@ -67,3 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/lib/%{name}/mkkerneldoth
 %dir %{_localstatedir}/lib/%{name}
 %{_localstatedir}/lib/%{name}/dkms_dbversion
+
+%files -n bash-completion-dkms
+%defattr(644,root,root,755)
+/etc/bash_completion.d/dkms
