@@ -7,7 +7,7 @@ License:	GPL v2+
 Group:		Base/Kernel
 Source0:	http://linux.dell.com/dkms/permalink/%{name}-%{version}.tar.gz
 # Source0-md5:	11a8aaade2ebec2803653837c7593030
-Source1:	dkms.modprobe.conf
+Source1:	%{name}.modprobe.conf
 Patch0:		kernel.conf.patch
 URL:		http://linux.dell.com/dkms/
 Requires:	bash >= 3.0
@@ -22,6 +22,7 @@ Requires:	kernel-module-build
 Requires:	kmod
 Requires:	sed
 Requires:	tar
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
