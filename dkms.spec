@@ -7,6 +7,7 @@ License:	GPL v2+
 Group:		Base/Kernel
 Source0:	http://linux.dell.com/dkms/permalink/%{name}-%{version}.tar.gz
 # Source0-md5:	11a8aaade2ebec2803653837c7593030
+Patch0:		kernel.conf.patch
 URL:		http://linux.dell.com/dkms/
 Requires:	bash >= 3.0
 Requires:	coreutils
@@ -53,6 +54,7 @@ Bashowe uzupełnianie parametrów dla polecenia dkms.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
