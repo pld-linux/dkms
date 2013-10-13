@@ -7,6 +7,7 @@ License:	GPL v2+
 Group:		Base/Kernel
 Source0:	http://linux.dell.com/dkms/permalink/%{name}-%{version}.tar.gz
 # Source0-md5:	11a8aaade2ebec2803653837c7593030
+Source1:	dkms.modprobe.conf
 Patch0:		kernel.conf.patch
 URL:		http://linux.dell.com/dkms/
 Requires:	bash >= 3.0
@@ -58,6 +59,9 @@ Bashowe uzupełnianie parametrów dla polecenia dkms.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/etc/modprobe.d
+cp -p %{SOURCE1} $RPM_BUILD_ROOT/etc/modprobe.d/dkms.conf
+
 %{__make} install-redhat \
 	SHELL=/bin/sh \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -71,6 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/framework.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/template-dkms-mkrpm.spec
+%config(noreplace) %verify(not md5 mtime size) /etc/modprobe.d/dkms.conf
 %attr(754,root,root) /etc/rc.d/init.d/dkms_autoinstaller
 %attr(755,root,root) %{_sbindir}/dkms
 %{_mandir}/man8/dkms.8*
