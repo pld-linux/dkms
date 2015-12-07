@@ -2,7 +2,7 @@ Summary:	Dynamic Kernel Module Support Framework
 Summary(pl.UTF-8):	Obsługa dynamicznych modułów jądra
 Name:		dkms
 Version:	2.2.0.3
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Base/Kernel
 Source0:	http://linux.dell.com/dkms/permalink/%{name}-%{version}.tar.gz
@@ -18,11 +18,11 @@ Requires:	gawk
 Requires:	gcc
 Requires:	grep
 Requires:	gzip
-Requires:	kernel-module-build
 Requires:	kmod
 Requires:	lsb-release
 Requires:	sed
 Requires:	tar
+Suggests:	kernel-module-build
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
